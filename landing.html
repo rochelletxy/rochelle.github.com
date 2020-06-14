@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello there :)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        .wrapper {
+            padding: 10px;
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .wrapper .item {
+            visibility: hidden;
+            display: none;
+        }
+        .wrapper h2 {
+            font-size: 50px;
+            margin: 0;
+            color: #eeeeee;
+            text-align: left;
+        }
+        .wrapper > div {
+            min-height: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: flex-end;
+            font-weight: bold;
+            color: lightpink;
+        }
+        .wrapper > div:after {
+            content: "";
+            width: 10px;
+            height: 4px;
+            display: block;
+            background: white;
+            color: orange;
+            margin-bottom: 4px;
+            margin-left: 2px;
+            animation-duration: 350ms;
+            animation-name: fade;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+<body translate="no" style="background-color: black">
+<div class="wrapper">
+    <div data-text></div>
+    <span class="item">This website is not done yet, sorry</span>
+    <span class="item">But it will be soon!</span>
+    <span class="item">It's pretty cool and fun</span>
+    <span class="item">And wayy better than the previous one</span>
+    <span class="item">Just give it another day or two!</span>
+    <span class="item">Lol, see you soon :))</span>
+    <h2>Hello, dreamer</h2>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+<script id="rendered-js">
+    let wrapper;
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function writingAll(stringTarget, container) {
+        wrapper = document.querySelector('[' + container + ']');
+        const stringsContainer = document.getElementsByClassName(stringTarget);
+
+        while (wrapper) {if (window.CP.shouldStopExecution(0)) break;
+            for (i = 0; i < stringsContainer.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+                const string = stringsContainer[i].textContent;
+                await write(string);
+                await sleep(1000);
+                await erase();
+                await sleep(1000);
+            }window.CP.exitedLoop(1);
+        }window.CP.exitedLoop(0);
+    }
+
+    async function write(text) {
+        let index = 0;
+        while (index < text.length) {if (window.CP.shouldStopExecution(2)) break;
+            const timeout = 100;
+            await sleep(timeout);
+            index++;
+            wrapper.innerHTML = text.substring(0, index);
+        }window.CP.exitedLoop(2);
+    }
+
+
+    async function erase() {
+        while (wrapper.textContent.length) {if (window.CP.shouldStopExecution(3)) break;
+            const timeout = 100;
+            await sleep(timeout);
+            wrapper.textContent = wrapper.textContent.substring(0, wrapper.textContent.length - 2);
+        }window.CP.exitedLoop(3);
+    }
+
+    writingAll('item', 'data-text');
+    //# sourceURL=pen.js
+</script>
+</body>
+</html>
+
